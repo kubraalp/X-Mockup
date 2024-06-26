@@ -9,6 +9,7 @@ const Container = styled.div`
   padding-left: 8px;
   padding-right: 8px;
   color: white;
+  
 `;
 
 const Heading1 = styled.h4`
