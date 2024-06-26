@@ -1,6 +1,7 @@
-import React from "react";
 import logo from "../assets/logo.png";
 import styled from "styled-components";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #000;
@@ -11,6 +12,7 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img`
+  max-height: 380px;
   margin-top: 10rem;
   margin-left: auto;
   margin-right: auto;
@@ -18,16 +20,22 @@ const Logo = styled.img`
   display: block;
 `;
 const Content = styled.div`
+  margin-top: 2rem;
+  margin-left: 6rem;
   text-align: left;
-  padding: 0 20px; /* Kenar boşlukları */
+  padding: 10 20px; /* Kenar boşlukları */
 `;
 
 const Heading1 = styled.h1`
-  font-size: 70px;
+  color: #e7e9ea;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 76px;
   margin-bottom: 60px;
 `;
 
 const Heading2 = styled.h2`
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #e7e9ea;
   font-size: 35px;
   margin-bottom: 20px;
 `;
@@ -45,6 +53,7 @@ const Paragraph1 = styled.p`
   font-size: 20px;
   margin-bottom: 1px;
   margin-top: 1px;
+  margin-left: 5rem;
 `;
 
 const Paragraph2 = styled.p`
@@ -55,7 +64,7 @@ const Paragraph2 = styled.p`
 `;
 
 const Button = styled.button`
-  width: 270px;
+  width: 120%;
   padding: 10px;
   border: none;
   cursor: pointer;
@@ -86,23 +95,98 @@ const Button = styled.button`
   }
 `;
 
-export default function Welcome() {
-  return (
-    <Container>
-      <Logo src={logo} />
-      <Content>
-        <Heading1>Happening now</Heading1>
-        <Heading2>Join today.</Heading2>
-        <ButtonContainer>
-          <Button className="google">Sign up with Google</Button>
-          <Button className="apple">Sign up with Apple</Button>
-          <Paragraph1>or</Paragraph1>
-          <Button className="create-account">Create account</Button>
+const Footer = styled.footer`
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -26px;
+  text-align: center;
 
-          <Paragraph2>Already have an account?</Paragraph2>
-          <Button className="sign-in">Sign in</Button>
-        </ButtonContainer>
-      </Content>
-    </Container>
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+    margin-top: 20px;
+  }
+`;
+
+const FooterLink = styled.a`
+  color: #666;
+  text-decoration: none;
+  margin: 0 15px;
+  margin: 0 10px 10px;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    margin: 0 8px 8px;
+  }
+
+  @media (max-width: 480px) {
+    margin: 0 5px 5px;
+  }
+`;
+
+export default function Welcome() {
+  const history = useHistory();
+
+  const handleClick = (path) => {
+    history.push(path);
+  };
+  return (
+    <>
+      <Container>
+        <Logo src={logo} />
+        <Content>
+          <Heading1>Happening now</Heading1>
+          <Heading2>Join today.</Heading2>
+          <ButtonContainer>
+            <Button className="google">Sign up with Google</Button>
+            <Button className="apple">Sign up with Apple</Button>
+            <Paragraph1>or</Paragraph1>
+            <Button
+              className="create-account"
+              onClick={() => handleClick("/signup")}
+            >
+              Create account
+            </Button>
+
+            <Paragraph2>Already have an account?</Paragraph2>
+            <Button className="sign-in" onClick={() => handleClick("/signup")}>
+              Sign in
+            </Button>
+          </ButtonContainer>
+        </Content>
+      </Container>
+      <Footer>
+        <FooterLink href="#">About</FooterLink>
+        <FooterLink href="#">Download the X app</FooterLink>
+        <FooterLink href="#">Help Center</FooterLink>
+        <FooterLink href="#">Terms of Service</FooterLink>
+        <FooterLink href="#">Privacy Policy</FooterLink>
+        <FooterLink href="#">Cookie Policy</FooterLink>
+        <FooterLink href="#">Imprint</FooterLink>
+        <FooterLink href="#">Accessibility</FooterLink>
+        <FooterLink href="#">Ads info</FooterLink>
+        <FooterLink href="#">Blog</FooterLink>
+        <FooterLink href="#">Careers</FooterLink>
+        <FooterLink href="#">Brand Resources</FooterLink>
+        <FooterLink href="#">Advertising</FooterLink>
+        <FooterLink href="#">Marketing</FooterLink>
+        <FooterLink href="#">X for Business</FooterLink>
+        <FooterLink href="#">Developers</FooterLink>
+        <FooterLink href="#">Directory</FooterLink>
+        <FooterLink href="#">Settings</FooterLink>
+        <FooterLink a href="none">
+          © 2024 X Corp.
+        </FooterLink>
+      </Footer>
+    </>
   );
 }
