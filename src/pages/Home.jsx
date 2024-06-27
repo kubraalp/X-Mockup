@@ -14,7 +14,7 @@ export default function Home({ user }) {
   return (
     <Container>
       <SideBar user={user} />
-      <Main />
+      <Main user = {user}/>
       <RightBar />
     </Container>
   );

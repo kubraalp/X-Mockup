@@ -64,7 +64,7 @@ export default function SideBar({ user }) {
         ></Image>
         <ProfileDetail>
           <Heading1>{user.isim}</Heading1>
-          <Heading2>@{user.person}</Heading2>
+          <Heading2>@{user.user}</Heading2>
         </ProfileDetail>
       </Profile>
     </Container>

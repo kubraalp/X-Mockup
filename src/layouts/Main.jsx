@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import StickyHeader from "../components/StickyHeader";
+import ForYou from "./ForYou";
+import TweetBox from "./TweetBox";
 
 const Sticky = styled.div`
   position: sticky;
   top: 0;
+  background-color: black;
 `;
 const Container = styled.div`
   width: 550px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px  #2f3336 solid;
+  border: 1px #2f3336 solid;
   border-top: none;
   min-height: 100vh;
 `;
@@ -26,7 +29,7 @@ const Title = styled.div`
   padding: 10px 20px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-color:  #2f3336;
+  border-color: #2f3336;
 `;
 
 const Heading3 = styled.h3`
@@ -41,7 +44,7 @@ const Content = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Main() {
+export default function Main({ user }) {
   return (
     <Container>
       <Sticky>
@@ -51,7 +54,10 @@ export default function Main() {
           <Heading3> Takip Edilenler</Heading3>
         </Title>
       </Sticky>
-      <Content>İçerikkkk</Content>
+      <TweetBox user={user}></TweetBox>
+      <Content>
+        <ForYou user={user}></ForYou>
+      </Content>
     </Container>
   );
 }
