@@ -50,6 +50,7 @@ const Button = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   align-self: flex-end;
+  margin-bottom: 0.7rem;
 `;
 
 const TweetBox = ({ user }) => {
@@ -79,7 +80,7 @@ const TweetBox = ({ user }) => {
       };
 
       console.log("Tweet gönderildi:", tweet);
-      setTweets([...tweets, newTweet]);
+      setTweets([newTweet, ...tweets]); // Yeni tweeti en başa ekleyerek diziyi ters çevireceğiz.
       setTweet("");
     }
   };

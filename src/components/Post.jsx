@@ -63,7 +63,6 @@ const IconInfo = styled.div`
 const Emoji = styled.div`
   width: 2.172rem;
   height: 2.172rem;
-  transition: color 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,8 +93,7 @@ export default function Post({ post }) {
           <UserName>{post.account.username}</UserName>
         </Account>
         <Content>{post.content}</Content>
-      
-					
+
         <Icons>
           <IconInfo>
             <Emoji>
