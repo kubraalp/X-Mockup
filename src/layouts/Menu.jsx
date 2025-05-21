@@ -14,6 +14,9 @@ const Content = styled.div`
 const Container = styled.div`
   margin-top: 0.125rem;
   margin-bottom: 0.25rem;
+
+  z-index: 1;
+  background-color: black;
 `;
 
 const StyledNavLink = styled(NavLink)`

@@ -1,6 +1,5 @@
 import logo from "../assets/logo.png";
 import styled from "styled-components";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
@@ -9,6 +8,11 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr; /* İki sütun oluşturuyor */
   height: 100vh;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 `;
 
 const Logo = styled.img`
@@ -18,12 +22,24 @@ const Logo = styled.img`
   margin-right: auto;
   max-width: 80%; /* Mobil cihazlar için */
   display: block;
+
+  @media (max-width: 768px) {
+    margin-top: 3rem;
+    max-height: 200px;
+  }
 `;
+
 const Content = styled.div`
   margin-top: 2rem;
   margin-left: 6rem;
   text-align: left;
-  padding: 10 20px; /* Kenar boşlukları */
+  padding: 10px 20px; /* Kenar boşlukları */
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding: 20px;
+    text-align: center;
+  }
 `;
 
 const Heading1 = styled.h1`
@@ -31,6 +47,11 @@ const Heading1 = styled.h1`
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 76px;
   margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
 `;
 
 const Heading2 = styled.h2`
@@ -38,6 +59,10 @@ const Heading2 = styled.h2`
   color: #e7e9ea;
   font-size: 35px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -46,6 +71,12 @@ const ButtonContainer = styled.div`
   width: 270px;
   gap: 10px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 `;
 
 const Paragraph1 = styled.p`
@@ -54,6 +85,10 @@ const Paragraph1 = styled.p`
   margin-bottom: 1px;
   margin-top: 1px;
   margin-left: 5rem;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 const Paragraph2 = styled.p`
@@ -61,6 +96,11 @@ const Paragraph2 = styled.p`
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 100px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-top: 40px;
+  }
 `;
 
 const Button = styled.button`
@@ -69,7 +109,11 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 50px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   &.google {
     background-color: white;
@@ -85,6 +129,11 @@ const Button = styled.button`
   &.create-account {
     background-color: #1da1f2;
     color: #fff;
+    font-weight: 700;
+
+    &:hover {
+      background-color: #1a8cd8;
+    }
   }
 
   &.sign-in {
@@ -92,6 +141,10 @@ const Button = styled.button`
     border: solid 1px white;
     color: #1da1f2;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgba(29, 155, 240, 0.1);
+    }
   }
 `;
 
@@ -136,9 +189,10 @@ const FooterLink = styled.a`
 export default function Welcome() {
   const history = useHistory();
 
-  const handleClick = (path) => {
-    history.push(path);
+  const handleSignIn = () => {
+    history.push("/signup");
   };
+
   return (
     <>
       <Container>
@@ -147,19 +201,20 @@ export default function Welcome() {
           <Heading1>Happening now</Heading1>
           <Heading2>Join today.</Heading2>
           <ButtonContainer>
-            <Button className="google">Sign up with Google</Button>
-            <Button className="apple">Sign up with Apple</Button>
+            <Button className="google" onClick={handleSignIn}>
+              Sign in with Google
+            </Button>
+            <Button className="apple" onClick={handleSignIn}>
+              Sign in with Apple
+            </Button>
             <Paragraph1>or</Paragraph1>
-            <Button
-              className="create-account"
-              onClick={() => handleClick("/signup")}
-            >
-              Create account
+            <Button className="create-account" onClick={handleSignIn}>
+              Sign in
             </Button>
 
-            <Paragraph2>Already have an account?</Paragraph2>
-            <Button className="sign-in" onClick={() => handleClick("/signup")}>
-              Sign in
+            <Paragraph2>New to X?</Paragraph2>
+            <Button className="sign-in" onClick={handleSignIn}>
+              Create account
             </Button>
           </ButtonContainer>
         </Content>
@@ -183,9 +238,7 @@ export default function Welcome() {
         <FooterLink href="#">Developers</FooterLink>
         <FooterLink href="#">Directory</FooterLink>
         <FooterLink href="#">Settings</FooterLink>
-        <FooterLink a href="none">
-          © 2024 X Corp.
-        </FooterLink>
+        <FooterLink href="#">© 2024 X Corp.</FooterLink>
       </Footer>
     </>
   );
